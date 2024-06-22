@@ -1,0 +1,67 @@
+.depute-container {
+  font-family: var(--reg-font);
+  font-weight: var(--reg-weight);
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.button {
+  font-family: var(--title-font);
+  font-weight: var(--title-weight);
+  font-size: 18px;
+  padding: 12px 24px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--green);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 2rem;
+}
+
+.button:hover {
+  background-color: var(--red);
+}
+
+.loading,
+.chargement {
+  font-family: var(--title-font);
+  font-weight: var(--title-weight);
+  font-size: 24px; /* Larger font size for loading text */
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .depute-container {
+    padding: 15px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .loading,
+  .chargement {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .depute-container {
+    padding: 10px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .loading,
+  .chargement {
+    font-size: 18px;
+  }
+}

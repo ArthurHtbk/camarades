@@ -1,0 +1,34 @@
+.footer {
+  font-family: var(--reg-font);
+  font-weight: var(--reg-weight);
+  text-align: center;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  margin-top: 2rem;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+.footer a {
+  color: var(--green);
+  text-decoration: none;
+  font-family: var(--title-font);
+  font-weight: var(--title-weight);
+}
+
+.footer a:hover {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  .footer {
+    padding: 2rem;
+  }
+
+  .footer p {
+    font-size: 1.2rem;
+  }
+}
