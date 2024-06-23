@@ -8,9 +8,10 @@ import "./Depute.css";
 
 function Depute() {
   const [votesData, setVotesData] = useState([]);
-  const [depute, setDepute] = useState();
+  const [depute, setDepute] = useState(null);
   const [comrade, setComrade] = useState("");
   const [score, setScore] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const { slug } = useParams();
   const { data } = useDeputes();
 
@@ -40,9 +41,11 @@ function Depute() {
               elem.vote.position !== "abstention"
           );
           setVotesData(finalVotes);
+          setIsLoading(false);
         }
       } catch (error) {
         console.error(error.message);
+        setIsLoading(false);
       }
     };
     fetchData();
@@ -78,45 +81,40 @@ function Depute() {
     setComrade(result);
   };
 
-  if (!depute) {
-    return <div className="loading">Chargement en cours...</div>;
+  if (isLoading) {
+    return <div className="chargement">Chargement en cours...</div>;
   }
 
   return (
     <div className="depute-container">
-      {depute.depute.id ? (
-        <>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Card
-              data={{
-                slug: slug,
-                groupe_sigle: depute.depute.groupe_sigle,
-                nom: depute.depute.nom,
-                nom_circo: depute.depute.nom_circo,
-                num_circo: depute.depute.num_circo,
-              }}
-            />
-          </div>
-          <button
-            type="button"
-            className="button"
-            onClick={() => {
-              comradeCalculator(votesData);
-            }}
-          >
-            Camarade ou pas camarade ?
-          </button>
-          {comrade && (
-            <Result
-              comrade={comrade}
-              data={votesData}
-              depute={depute}
-              score={score}
-            />
-          )}
-        </>
-      ) : (
-        <div className="chargement">Chargement en cours...</div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Card
+          data={{
+            slug: slug,
+            groupe_sigle: depute.depute.groupe_sigle,
+            nom: depute.depute.nom,
+            nom_circo: depute.depute.nom_circo,
+            num_circo: depute.depute.num_circo,
+          }}
+        />
+      </div>
+      <button
+        type="button"
+        className="button"
+        onClick={() => {
+          comradeCalculator(votesData);
+        }}
+        disabled={isLoading}
+      >
+        Camarade ou pas camarade ?
+      </button>
+      {comrade && (
+        <Result
+          comrade={comrade}
+          data={votesData}
+          depute={depute}
+          score={score}
+        />
       )}
     </div>
   );
